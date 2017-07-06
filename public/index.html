@@ -1,31 +1,26 @@
 <html ng-app="mainApp">
 
 <head>
-  <!-- <script src="node_modules/angular/angular.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <!--   <script src="node_modules/elasticsearch-browser/elasticsearch.angular.min.js"></script>
- -->
-  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-route/angular-route.min.js"></script>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  <!-- <script src="node_modules/angular-cookies/angular-cookies.js"></script> -->
   <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
-  <link rel="stylesheet" href="style.css">
   <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
-  <!-- <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" /> -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <script src="app/modules/users/user.module.js"></script>
+  <script src="app/modules/client/client.module.js"></script>
+  <script src="app/modules/auth/auth.module.js"></script>
   <script src="app/app.module.js"></script>
   <script src="app/modules/users/model/user.service.js"></script>
+  <script src="app/modules/client/model/client.service.js"></script>
+  <script src="app/modules/auth/model/auth.service.js"></script>
   <script src="app/modules/users/user.route.js"></script>
-  <!-- <script src="app/modules/users/controller/login.controller.js"></script> -->
+  <script src="app/modules/client/client.route.js"></script>
+  <script src="app/modules/auth/auth.route.js"></script>
   <script src="app/modules/users/controller/add-user.controller.js"></script>
   <script src="app/modules/users/controller/list-user.controller.js"></script>
-  <!-- <script src="app/modules/product/controller/edit-product.controller.js"></script> -->
-  <!--  <script src="app/modules/auth/model/auth.service.js"></script>
-  <script src="app/modules/elastic/model/es.service.js"></script> -->
-  <!-- <script src="app/modules/auth/model/auth.interceptor.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="app/modules/client/controller/add-client.controller.js"></script>
+  <script src="app/modules/auth/controller/auth.controller.js"></script>
 </head>
 
 <body>

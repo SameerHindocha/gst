@@ -1,21 +1,16 @@
 'use strict';
-(function() {
+(function () {
   angular
     .module('userApp')
     .controller('listUserController', controller);
 
-  controller.$inject = ['users', 'UserService', '$location', 'toastr'];
+  controller.$inject = ['users', 'UserService', '$location', 'toastr', 'AuthService'];
 
-  function controller(users, UserService, $location, toastr) {
+  function controller(users, UserService, $location, toastr, AuthService) {
     let vm = this;
     vm.users = users;
-    console.log("vm.users", vm.users);
-
-    // vm.deleteUser = deleteUser;
-
-
     // vm.updateProduct = updateProduct;
-    // vm.Logout = Logout;
+    vm.Logout = Logout;
 
     // function deleteUser(_id) {
 
@@ -43,15 +38,16 @@
     //   });
     // }
 
-    // function Logout() {
-    //   AuthService.Logout().then((response) => {
-    //     window.localStorage.removeItem('session');
-    //     toastr.success(response.data.message);
-    //     $location.path(`/login`);
-    //   }).catch((error) => {
-    //     toastr.success(error);
-    //   })
-    // }
+    function Logout() {
+      console.log("here");
+      AuthService.logout().then((response) => {
+        window.localStorage.removeItem('session');
+        toastr.success(response.data.message);
+        $location.path(`/login`);
+      }).catch((error) => {
+        toastr.success(error);
+      })
+    }
 
     // function updateProduct(_id) {
     //   console.log(_id);
