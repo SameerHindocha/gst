@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <h2>
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <b>User Registration</b>
+            </h2>
+    </div>
+    <hr style="display: block;height: 1px;border: 5;border-top: 3px solid #ccc;margin: 1em 0;padding: 0;">
+    <form name="addUserForm">
+      <div class="col-md-6">
+        <lable>Company Name</lable>
+        <br />
+        <input type="text" name="companyName" class="form-control" ng-model="vm.companyName" placeholder="Enter Company Name">
+        <div ng-hide="addUserForm.companyName.$valid || addUserForm.companyName.$pristine" class="alert alert-danger">
+          Company Name is Require
+        </div>
+        <br />
+        <lable>State</lable>
+        <br />
+        <input type="text" name="state" class="form-control" ng-model="vm.state" placeholder="Enter State Name">
+        <div ng-hide="addUserForm.state.$valid || addUserForm.state.$pristine" class="alert alert-danger">
+          State Name is Require
+        </div>
+        <br />
+        <lable>City</lable>
+        <br />
+        <input type="text" name="city" class="form-control" ng-model="vm.city" placeholder="Enter City Name">
+        <div ng-hide="addUserForm.city.$valid || addUserForm.city.$pristine" class="alert alert-danger">
+          City Name is Require
+        </div>
+        <br />
+        <lable>Pincode</lable>
+        <br />
+        <input type="number" name="pincode" class="form-control" ng-model="vm.pincode" placeholder="Enter Pincode">
+        <div ng-hide="addUserForm.pincode.$valid || addUserForm.pincode.$pristine" class="alert alert-danger">
+          Pincode is Require
+        </div>
+        <br />
+        <input type="email" placeholder="Email Adress">
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+      <lable>Email Address</lable>
+      <br />
+      <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address">
+      <div ng-hide="addUserForm.email.$valid || addUserForm.email.$pristine" class="alert alert-danger">
+        Email Address is Require
+      </div>
+      <br />
+      <lable>Owner Name</lable>
+      <br />
+      <input type="text" name="ownerName" class="form-control" ng-model="vm.ownerName" placeholder="Enter Owner Name" required>
+      <div ng-hide="addUserForm.ownerName.$valid || addUserForm.ownerName.$pristine" class="alert alert-danger">
+        Owner Name is Require
+      </div>
+      <br />
+      <lable>Address</lable>
+      <br />
+      <input type="text" name="address" class="form-control" ng-model="vm.address" placeholder="Enter Address">
+      <div ng-hide="addUserForm.address.$valid || addUserForm.address.$pristine" class="alert alert-danger">
+        Address is Require
+      </div>
+      <br />
+      <lable>Mobile Number 1</lable>
+      <br />
+      <input type="number" name="mobile1" class="form-control" ng-model="vm.mobile1" placeholder="Enter Mobile Number">
+      <div ng-hide="addUserForm.mobile1.$valid || addUserForm.mobile1.$pristine" class="alert alert-danger">
+        Company Name is Require
+      </div>
+      <br />
+      <lable>Mobile Number 2</lable>
+      <br />
+      <input type="number" name="mobile2" class="form-control" ng-model="vm.mobile2" placeholder="Enter Alternative Mobile Number">
+      <div ng-hide="addUserForm.mobile2.$valid || addUserForm.mobile2.$pristine" class="alert alert-danger">
+        Alternative Mobile Number is Require
+      </div>
+      <br />
+      <lable>Landline Number</lable>
+      <br />
+      <input type="number" name="landline" class="form-control" ng-model="vm.landline" placeholder="Enter Landline Number">
+      <div ng-hide="addUserForm.landline.$valid || addUserForm.landline.$pristine" class="alert alert-danger">
+        Landline Number is Require
+      </div>
+      <br />
+      <lable>Pan No</lable>
+      <br />
+      <input type="text" name="panNo" class="form-control" ng-model="vm.panNo" placeholder="Enter Pan Number">
+      <div ng-hide="addUserForm.panNo.$valid || addUserForm.panNo.$pristine" class="alert alert-danger">
+        Pan Number is Require
+      </div>
+      <br />
+      <lable>Tin Number</lable>
+      <br />
+      <input type="text" name="tinNo" class="form-control" ng-model="vm.tinNo" placeholder="Enter Tin Number">
+      <div ng-hide="addUserForm.tinNo.$valid || addUserForm.tinNo.$pristine" class="alert alert-danger">
+        Tin Number is Require
+      </div>
+      <br />
+      <lable>GST Number</lable>
+      <br />
+      <input type="text" name="gstNo" class="form-control" ng-model="vm.GSTNo" placeholder="Enter GST Number">
+      <div ng-hide="addUserForm.gstNo.$valid || addUserForm.gstNo.$pristine" class="alert alert-danger">
+        GST Number is Require
+      </div>
+      <br />
+      <br>
+      <br>
+      <button class="btn btn-success" ng-disabled="addUserForm.$invalid" ng-click="vm.addUser()">Save</button>
+      <button class="btn btn-success" ng-disabled="addUserForm.$invalid" ng-click="vm.sendLink()">Send</button>
+  </div>
+  </form>
+  </div>
+</body>
+
+</html>
+<!-- 
+<div class="container">
+  <form>
+    <div class="row">
+      <h4>Account</h4>
+      <div class="input-group input-group-icon">
+        <input type="text" placeholder="Full Name" />
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input type="email" placeholder="Email Adress" />
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input type="password" placeholder="Password" />
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-half">
+        <h4>Date of Birth</h4>
+        <div class="input-group">
+          <div class="col-third">
+            <input type="text" placeholder="DD" />
+          </div>
+          <div class="col-third">
+            <input type="text" placeholder="MM" />
+          </div>
+          <div class="col-third">
+            <input type="text" placeholder="YYYY" />
+          </div>
+        </div>
+      </div>
+      <div class="col-half">
+        <h4>Gender</h4>
+        <div class="input-group">
+          <input type="radio" name="gender" value="male" id="gender-male" />
+          <label for="gender-male">Male</label>
+          <input type="radio" name="gender" value="female" id="gender-female" />
+          <label for="gender-female">Female</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4>Payment Details</h4>
+      <div class="input-group">
+        <input type="radio" name="payment-method" value="card" id="payment-method-card" checked="true" />
+        <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+        <input type="radio" name="payment-method" value="paypal" id="payment-method-paypal" />
+        <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+      </div>
+      <div class="input-group input-group-icon">
+        <input type="text" placeholder="Card Number" />
+        <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+      </div>
+      <div class="col-half">
+        <div class="input-group input-group-icon">
+          <input type="text" placeholder="Card CVC" />
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
+      </div>
+      <div class="col-half">
+        <div class="input-group">
+          <select>
+            <option>01 Jan</option>
+            <option>02 Jan</option>
+          </select>
+          <select>
+            <option>2015</option>
+            <option>2016</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4>Terms and Conditions</h4>
+      <div class="input-group">
+        <input type="checkbox" id="terms" />
+        <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
+      </div>
+    </div>
+  </form>
+</div>
+ -->
