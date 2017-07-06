@@ -1,0 +1,27 @@
+'use strict';
+(function() {
+    angular
+        .module('dashboardApp')
+        .factory('DashboardService', Service);
+
+    Service.$inject = ['$http', '$q'];
+
+    function Service($http, $q) {
+        return {
+            shareLinkService: shareLinkService,
+        };
+
+        function shareLinkService(data) {
+            var defer = $q.defer();
+            $http({
+                method: 'get',
+                url: '/admin-api/share-form/' + data.email
+            }).then(function(response) {
+                defer.resolve(response);
+            }).catch(function(error) {
+                defer.reject(error);
+            });
+            return defer.promise;
+        }
+    }
+})();

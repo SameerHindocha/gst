@@ -1,5 +1,5 @@
 'use strict';
-(function() {
+(function () {
   angular
     .module('userApp')
     .factory('UserService', Service);
@@ -21,9 +21,9 @@
         method: 'post',
         url: '/admin-api/user',
         data: data
-      }).then(function(response) {
+      }).then(function (response) {
         defer.resolve(response);
-      }).catch(function(error) {
+      }).catch(function (error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -34,9 +34,9 @@
       $http({
         method: 'get',
         url: '/admin-api/user'
-      }).then(function(response) {
+      }).then(function (response) {
         defered.resolve(response.data);
-      }).catch(function(error) {
+      }).catch(function (error) {
         defered.reject(error);
       });
       return defered.promise;
@@ -50,9 +50,9 @@
       $http({
         method: 'delete',
         url: '/admin-api/user/' + userId._id
-      }).then(function(response) {
+      }).then(function (response) {
         defer.resolve(response);
-      }).catch(function(error) {
+      }).catch(function (error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -65,9 +65,9 @@
         method: 'put',
         url: '/admin-api/user/' + userId,
         data: data
-      }).then(function(response) {
+      }).then(function (response) {
         defer.resolve(response);
-      }).catch(function(error) {
+      }).catch(function (error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -80,9 +80,9 @@
       $http({
         method: 'get',
         url: '/admin-api/user/' + userId
-      }).then(function(response) {
+      }).then(function (response) {
         defer.resolve(response.data);
-      }).catch(function(error) {
+      }).catch(function (error) {
         defer.reject(error);
       });
       return defer.promise;

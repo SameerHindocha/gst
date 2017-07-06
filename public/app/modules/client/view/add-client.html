@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h2>
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <b>Client Registration</b>
+            </h2>
+        </div>
+        <hr style="display: block;height: 1px;border: 5;border-top: 3px solid #ccc;margin: 1em 0;padding: 0;">
+        <form name="addClientForm">
+            <div class="col-md-6">
+                <lable>Company Name</lable>
+                <br />
+                <input type="text" name="companyName" class="form-control" ng-model="vm.companyName" placeholder="Enter Company Name">
+                <div ng-hide="addClientForm.companyName.$valid || addClientForm.companyName.$pristine" class="alert alert-danger">
+                    Company Name is Require
+                </div>
+                <br />
+                <lable>State</lable>
+                <br />
+                <input type="text" name="state" class="form-control" ng-model="vm.state" placeholder="Enter State Name">
+                <div ng-hide="addClientForm.state.$valid || addClientForm.state.$pristine" class="alert alert-danger">
+                    State Name is Require
+                </div>
+                <br />
+                <lable>City</lable>
+                <br />
+                <input type="text" name="city" class="form-control" ng-model="vm.city" placeholder="Enter City Name">
+                <div ng-hide="addClientForm.city.$valid || addClientForm.city.$pristine" class="alert alert-danger">
+                    City Name is Require
+                </div>
+                <br />
+                <lable>Pincode</lable>
+                <br />
+                <input type="text" name="pincode" class="form-control" ng-model="vm.pincode" placeholder="Enter Pincode">
+                <div ng-hide="addClientForm.pincode.$valid || addClientForm.pincode.$pristine" class="alert alert-danger">
+                    Pincode is Require
+                </div>
+                <br />
+                <lable>Email Address</lable>
+                <br />
+                <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address">
+                <div ng-hide="addClientForm.email.$valid || addClientForm.email.$pristine" class="alert alert-danger">
+                    Email Address is Require
+                </div>
+                <br />
+                <lable>Address</lable>
+                <br />
+                <input type="text" name="address" class="form-control" ng-model="vm.address" placeholder="Enter Address">
+                <div ng-hide="addClientForm.address.$valid || addClientForm.address.$pristine" class="alert alert-danger">
+                    Address is Require
+                </div>
+                <br />
+                <lable>Mobile Number 1</lable>
+                <br />
+                <input type="text" name="mobile1" class="form-control" ng-model="vm.mobile1" placeholder="Enter Mobile Number">
+                <div ng-hide="addClientForm.mobile1.$valid || addClientForm.mobile1.$pristine" class="alert alert-danger">
+                    Company Name is Require
+                </div>
+                <br />
+                <lable>Mobile Number 2</lable>
+                <br />
+                <input type="text" name="mobile2" class="form-control" ng-model="vm.mobile2" placeholder="Enter Alternative Mobile Number">
+                <div ng-hide="addClientForm.mobile2.$valid || addClientForm.mobile2.$pristine" class="alert alert-danger">
+                    Alternative Mobile Number is Require
+                </div>
+                <br />
+                <lable>Landline Number</lable>
+                <br />
+                <input type="text" name="landline" class="form-control" ng-model="vm.landline" placeholder="Enter Landline Number">
+                <div ng-hide="addClientForm.landline.$valid || addClientForm.landline.$pristine" class="alert alert-danger">
+                    Landline Number is Require
+                </div>
+                <br />
+                <lable>Pan No</lable>
+                <br />
+                <input type="text" name="panNo" class="form-control" ng-model="vm.panNo" placeholder="Enter Pan Number">
+                <div ng-hide="addClientForm.panNo.$valid || addClientForm.panNo.$pristine" class="alert alert-danger">
+                    Pan Number is Require
+                </div>
+                <br />
+                <lable>Tin Number</lable>
+                <br />
+                <input type="text" name="tinNo" class="form-control" ng-model="vm.tinNo" placeholder="Enter Tin Number">
+                <div ng-hide="addClientForm.tinNo.$valid || addClientForm.tinNo.$pristine" class="alert alert-danger">
+                    Tin Number is Require
+                </div>
+                <br />
+                <lable>GST Number</lable>
+                <br />
+                <input type="text" name="gstNo" class="form-control" ng-model="vm.gstNo" placeholder="Enter GST Number">
+                <div ng-hide="addClientForm.gstNo.$valid || addClientForm.gstNo.$pristine" class="alert alert-danger">
+                    GST Number is Require
+                </div>
+                <br />
+                <br>
+                <br>
+                <button class="btn btn-success" ng-disabled="addClientForm.$invalid" ng-click="vm.addClient()">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

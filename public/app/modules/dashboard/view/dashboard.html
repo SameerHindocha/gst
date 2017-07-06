@@ -1,0 +1,31 @@
+<h1>Welcome to dashboard</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h2>
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <b>Share Registration Form</b>
+            </h2>
+        </div>
+        <hr style="display: block;height: 1px;border: 5;border-top: 3px solid #ccc;margin: 1em 0;padding: 0;">
+        <form name="shareLinkForm">
+            <div class="col-md-6">
+                <lable>Email Address</lable>
+                <br />
+                <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address" required>
+                <br />
+                <br>
+                <button class="btn btn-success" ng-disabled="addUserForm.$invalid" ng-click="vm.sendLink()">Share</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

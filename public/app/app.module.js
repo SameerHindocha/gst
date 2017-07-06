@@ -1,1 +1,1 @@
-angular.module('mainApp', ['userApp', 'ngRoute']);
+angular.module('mainApp', ['userApp', 'dashboardApp', 'clientApp', 'ngRoute']);

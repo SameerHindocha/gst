@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.5",
     "angular-route": "^1.6.5",
     "angular-toastr": "^2.1.1",
     "bootstrap": "^3.3.7"
