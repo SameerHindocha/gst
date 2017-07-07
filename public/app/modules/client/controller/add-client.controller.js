@@ -7,7 +7,6 @@
     controller.$inject = ['ClientService', 'toastr', '$location', '$route'];
 
     function controller(ClientService, toastr, $location, $route) {
-        console.log("123");
         let vm = this;
         vm.ClientService = ClientService;
         vm.addClient = addClient;
@@ -17,6 +16,7 @@
 
         function addClient() {
             let sentUserId = $route.current.params.id;
+            console.log("sentUserId", sentUserId);
             vm.sentUserId = sentUserId;
             let postObj = {
                 companyName: vm.companyName,

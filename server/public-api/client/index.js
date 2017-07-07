@@ -3,6 +3,7 @@ var router = express.Router();
 var app = express();
 
 var client = require('../../models/client.js');
+var user = require('../../models/User.js')
 
 
 // middleware to use for all requests
@@ -60,9 +61,27 @@ var getAllClient = function get(req, res) {
     });
 };
 
+var getClientsByUser = function get(req, res) {
+    let email = req.params.email;
+    user.findOne({ email: email }, function(err, foundUser) {
+        if (err) {
+            res.send(err)
+        } else {
+            client.find({ User: foundUser._id }, function(err, clients) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(clients)
+                }
+            });
+        }
+
+    });
+};
+
 
 module.exports = {
     insertNewClient: insertNewClient,
-    getAllClient: getAllClient
-
+    getAllClient: getAllClient,
+    getClientsByUser: getClientsByUser
 }

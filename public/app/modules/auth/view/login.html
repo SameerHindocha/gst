@@ -1,0 +1,34 @@
+<div class="container">
+    <h2 class="col-md-offset-5"><b>Sign In</b></h2>
+    <hr style="display: block;height: 1px;border: 5;border-top: 3px solid #ccc;margin: 1em 0;padding: 0;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 jumbotron vertical-center">
+            <form name="authForm" class="form" novalidate>
+                <!-- 
+ <label>Username</label><br />
+  <input type="text" name="data1" class="form-control" ng-model="vm.data1" placeholder="Enter Username" required>
+
+  <br />  -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <br />
+                    <input type="email" name="data1" class="form-control" ng-model="vm.data1" placeholder="Enter Email" required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>Password</label>
+                    <br />
+                    <input type="Password" name="data2" class="form-control" ng-model="vm.data2" placeholder="Enter Password" required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <button class="btn btn-success" ng-click="vm.doLogin()" ng-disabled="authForm.$invalid">Login</button>
+                    <br />
+                    <span class="text-danger">{{ vm.error }}</span>
+                </div>
+                <a ng-click="vm.register()">Not yet Registered? Register here</a>
+        </div>
+        </form>
+    </div>
+    </script>
+</div>

@@ -29,11 +29,12 @@
                 landline: vm.landline,
                 panNo: vm.panNo,
                 tinNo: vm.tinNo,
-                GSTNo: vm.GSTNo
+                GSTNo: vm.GSTNo,
+                password: vm.password
             };
             UserService.addUser(postObj).then((response) => {
                 toastr.success('User added Successfully');
-                $location.path('/dashboard');
+                $location.path('/login');
             }).catch((error) => {
                 toastr.error(error);
             });

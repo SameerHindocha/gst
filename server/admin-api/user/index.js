@@ -37,6 +37,7 @@ var insertNewUser = function post(req, res) {
     User.panNo = req.body.panNo;
     User.tinNo = req.body.tinNo;
     User.GSTNo = req.body.GSTNo;
+    User.password = req.body.password;
 
     User.save(function(err) {
         if (err) {

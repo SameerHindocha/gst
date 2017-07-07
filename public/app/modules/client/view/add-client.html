@@ -44,6 +44,13 @@
                     Pincode is Require
                 </div>
                 <br />
+                <lable>Owner Nane</lable>
+                <br />
+                <input type="text" name="ownerName" class="form-control" ng-model="vm.ownerName" placeholder=" Owner Name">
+                <div ng-hide="addClientForm.ownerName.$valid || addClientForm.ownerName.$pristine" class="alert alert-danger">
+                    Owner Name is Require
+                </div>
+                <br />
                 <lable>Email Address</lable>
                 <br />
                 <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address">
@@ -95,8 +102,8 @@
                 <br />
                 <lable>GST Number</lable>
                 <br />
-                <input type="text" name="gstNo" class="form-control" ng-model="vm.gstNo" placeholder="Enter GST Number">
-                <div ng-hide="addClientForm.gstNo.$valid || addClientForm.gstNo.$pristine" class="alert alert-danger">
+                <input type="text" name="GSTNo" class="form-control" ng-model="vm.GSTNo" placeholder="Enter GST Number">
+                <div ng-hide="addClientForm.GSTNo.$valid || addClientForm.GSTNo.$pristine" class="alert alert-danger">
                     GST Number is Require
                 </div>
                 <br />

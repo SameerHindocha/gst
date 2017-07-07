@@ -4,11 +4,23 @@
         .module('userApp')
         .controller('listUserController', controller);
 
-    controller.$inject = ['users', 'UserService', '$location', 'toastr'];
+    controller.$inject = ['users', 'UserService', 'AuthService', '$location', 'toastr'];
 
-    function controller(users, UserService, $location, toastr) {
+    function controller(users, UserService, AuthService, $location, toastr) {
         let vm = this;
         vm.users = users;
+        vm.Logout = Logout;
+
+        function Logout() {
+            console.log("here");
+            AuthService.logout().then((response) => {
+                window.localStorage.removeItem('session');
+                toastr.success(response.data.message);
+                $location.path(`/login`);
+            }).catch((error) => {
+                toastr.success(error);
+            })
+        }
         // vm.updateProduct = updateProduct;
         // vm.Logout = Logout;
 

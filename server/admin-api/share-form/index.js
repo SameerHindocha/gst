@@ -19,15 +19,16 @@ router.get('/', function(req, res) {
 
 var sendMail = function get(req, res) {
     let email = req.params.email;
+    console.log("email in sendemail", email);
     user.findOne({ email: email }, function(err, user) {
         if (err) {
             res.send(err);
         } else {
             let emailObj = {
-                subject: `Welcome to GST registration ${user.ownerName}`, // Subject line
+                subject: `Welcome to GST registration ${user.ownerName} ${user._id}`, // Subject line
                 html: `<h4>Hello, ${user.ownerName}</h4> 
                     <h4>Welcome,</h4><br>
-                    <a href='http://localhost:8020/#!/client/add/${user._id}' class='alert-link'>Click here to fill the GST registration form</a></br></br>
+                    <a href='http://localhost:8020/#/client/add/${user._id}' class='alert-link'>Click here to fill the GST registration form</a></br></br>
 <h4>Warm Regards,<h4>
                     <h4>GST team</h4>`,
             };

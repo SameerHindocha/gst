@@ -44,13 +44,6 @@
                     Pincode is Require
                 </div>
                 <br />
-                <lable>Email Address</lable>
-                <br />
-                <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address" required>
-                <div ng-hide="addUserForm.email.$valid || addUserForm.email.$pristine" class="alert alert-danger">
-                    Email Address is Require
-                </div>
-                <br />
                 <lable>Owner Name</lable>
                 <br />
                 <input type="text" name="ownerName" class="form-control" ng-model="vm.ownerName" placeholder="Enter Owner Name" required>
@@ -105,6 +98,20 @@
                 <input type="text" name="GSTNo" class="form-control" ng-model="vm.GSTNo" placeholder="Enter GST Number" required>
                 <div ng-hide="addUserForm.GSTNo.$valid || addUserForm.GSTNo.$pristine" class="alert alert-danger">
                     GST Number is Require
+                </div>
+                <br />
+                <lable>Email Address</lable>
+                <br />
+                <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address" required>
+                <div ng-hide="addUserForm.email.$valid || addUserForm.email.$pristine" class="alert alert-danger">
+                    Email Address is Require
+                </div>
+                <br />
+                <lable>Password</lable>
+                <br />
+                <input type="password" name="password" class="form-control" ng-model="vm.password" placeholder=" Password" required>
+                <div ng-hide="addUserForm.password.$valid || addUserForm.password.$pristine" class="alert alert-danger">
+                    Password is Require
                 </div>
                 <br />
                 <br>

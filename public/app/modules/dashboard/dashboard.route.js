@@ -2,12 +2,13 @@
 (function() {
     angular
         .module('dashboardApp')
-        .config(['$routeProvider', function($routeProvider) {
+        .config(['$routeProvider', function($routeProvider, DashboardService) {
             $routeProvider
                 .when("/dashboard", {
                     templateUrl: 'app/modules/dashboard/view/dashboard.html',
                     controller: 'dashboardController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    loggedInGuard: true
                 })
         }]);
 })();
