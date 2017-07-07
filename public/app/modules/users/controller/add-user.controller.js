@@ -1,5 +1,5 @@
 'use strict';
-(function () {
+(function() {
   angular
     .module('userApp')
     .controller('addUserController', controller);
@@ -29,7 +29,8 @@
         landline: vm.landline,
         panNo: vm.panNo,
         tinNo: vm.tinNo,
-        GSTNo: vm.GSTNo
+        GSTNo: vm.GSTNo,
+        password: vm.password
       };
 
       UserService.addUser(postObj).then((response) => {

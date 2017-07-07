@@ -31,6 +31,7 @@
         controller: 'addUserController',
         controllerAs: 'vm'
 
+
       })
 
       // .when("/user/edit/:id", {

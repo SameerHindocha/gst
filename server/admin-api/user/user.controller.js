@@ -6,14 +6,14 @@ var user = require('../../models/User.js');
 
 
 // middleware to use for all requests
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
   // do logging
   console.log('Something is happening.');
   next();
 });
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
   res.json({ message: 'welcome to our api!' });
 });
 
@@ -38,8 +38,10 @@ var insertNewUser = function post(req, res) {
   User.panNo = req.body.panNo;
   User.tinNo = req.body.tinNo;
   User.GSTNo = req.body.GSTNo;
+  User.password = req.body.password;
 
-  User.save(function (err) {
+
+  User.save(function(err) {
     if (err) {
       res.send(err);
     } else {
@@ -49,7 +51,7 @@ var insertNewUser = function post(req, res) {
 };
 
 var getAllUser = function get(req, res) {
-  user.find(function (err, users) {
+  user.find(function(err, users) {
     if (err) {
       res.send(err);
     } else {
@@ -61,7 +63,7 @@ var getAllUser = function get(req, res) {
 
 var getUserbyId = function get(req, res) {
 
-  user.findById({ _id: req.params.id }, function (err, users) {
+  user.findById({ _id: req.params.id }, function(err, users) {
     if (err) {
       res.send(err);
     } else {
@@ -75,7 +77,7 @@ var getUserbyId = function get(req, res) {
 
 var updateUser = function putUser(req, res) {
   var User = new user();
-  user.findById(req.params.id, function (err, User) {
+  user.findById(req.params.id, function(err, User) {
     if (err) {
       res.send(err);
     } else {
@@ -92,7 +94,7 @@ var updateUser = function putUser(req, res) {
       User.panNo = req.body.panNo;
       User.tinNo = req.body.tinNo;
       User.GSTNo = req.body.GSTNo;
-      User.save(function (err) {
+      User.save(function(err) {
         if (err) {
           res.send(err);
           console.log("update error");
@@ -112,7 +114,7 @@ var updateUser = function putUser(req, res) {
 var deleteUser = function deleteuser(req, res) {
   user.remove({
     _id: req.params.id
-  }, function (err, users) {
+  }, function(err, users) {
     if (err) {
       res.send(err);
     } else {
