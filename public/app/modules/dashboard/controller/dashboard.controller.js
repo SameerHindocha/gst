@@ -11,6 +11,7 @@
         let vm = this;
         vm.DashboardService = DashboardService;
         vm.sendLink = sendLink;
+        vm.sendSMS = sendSMS;
         vm.getClientList = getClientList;
         vm.Logout = Logout;
         activate();
@@ -24,11 +25,18 @@
             let postObj = {
                 email: vm.email
             }
-            DashboardService.shareLinkService(postObj).then((response) => {
-                toastr.success(response);
-            }).catch((error) => {
-                toastr.error(error);
-            });
+            DashboardService.shareLinkService(postObj);
+            toastr.success("Email has been sent successfully to your mail");
+
+        }
+
+        function sendSMS() {
+            let postObj = {
+                email: vm.email
+            }
+            DashboardService.sendSMSService(postObj);
+            toastr.success("SMS sent successfully");
+
         }
 
         function getClientList() {
@@ -43,7 +51,6 @@
         }
 
         function Logout() {
-            console.log("here");
             AuthService.logout().then((response) => {
                 window.localStorage.removeItem('session');
                 toastr.success(response.data.message);

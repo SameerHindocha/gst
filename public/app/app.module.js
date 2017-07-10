@@ -32,7 +32,7 @@ function run($rootScope, $route, $location) {
         } else {
             return $location.path('/login');
         }
-        return;
+        return
     });
 }
 

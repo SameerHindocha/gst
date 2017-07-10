@@ -16,6 +16,8 @@
 
 	express_router.get('/admin-api/share-form/:email', shareForm.sendMail);
 
+	express_router.get('/admin-api/send-sms/:email', shareForm.sendSMS);
+
 	express_router.get('/checkLogin', auth.IsLoogedIn);
 
 	express_router.post('/login', auth.Login);

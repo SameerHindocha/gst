@@ -9,7 +9,8 @@
     function Service($http, $q) {
         return {
             shareLinkService: shareLinkService,
-            getClients: getClients
+            getClients: getClients,
+            sendSMSService: sendSMSService
         };
 
         function shareLinkService(data) {
@@ -17,6 +18,19 @@
             $http({
                 method: 'get',
                 url: '/admin-api/share-form/' + data.email
+            }).then(function(response) {
+                defer.resolve(response);
+            }).catch(function(error) {
+                defer.reject(error);
+            });
+            return defer.promise;
+        }
+
+        function sendSMSService(data) {
+            var defer = $q.defer();
+            $http({
+                method: 'get',
+                url: '/admin-api/send-sms/' + data.email
             }).then(function(response) {
                 defer.resolve(response);
             }).catch(function(error) {

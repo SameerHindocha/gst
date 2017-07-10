@@ -35,7 +35,11 @@
 	        .then(function(userData) {
 	            if (userData) {
 	                session = req.session;
-	                session.email = Email;
+	                session.email = userData.email;
+	                session.mobileNo = userData.mobile1;
+	                session.name = userData.ownerName;
+
+	                console.log("session", session);
 	                return res.status(200).send({ message: "Login successful" })
 	            } else {
 	                return res.status(404).send({ message: "Incorrect Email or Password" })

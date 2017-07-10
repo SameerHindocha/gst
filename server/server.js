@@ -12,7 +12,7 @@ const path = require('path');
 const fs = require('fs');
 
 // configure app
-// app.use(morgan('dev')); // log requests to the console
+app.use(morgan('dev')); // log requests to the console
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
