@@ -1,17 +1,32 @@
-	var app = require('express');
-	var client = require('./client/index.js');
+/*
+ Endpoints which don't require authentication
+ */
+let byPassedEndpoints = [
+  '/client'
+];
 
-	var router = app.Router();
+let fs = require('fs');
+module.exports = class PublicApis {
+  constructor(app) {
+    // Configure local auth check
+    app.use('/public-api', (req, res, next) => {
+      byPassedEndpoints.forEach(function (path) {
+        let regex = new RegExp(path, 'i');
+        if (req.path.match(regex)) {
+          next();
+        }
+      });
+    });
+    this.setupRoutes(app);
+  }
 
-
-
-	router.get('/api/client', client.getAllClient);
-
-	// express_router.get('/api/user/:id', client.getUserbyId);
-
-	router.post('/api/client', client.insertNewClient);
-
-	// express_router.put('/api/user/:id', client.updateUser);
-
-	// express_router.delete('/api/user/:id', client.deleteUser);
-	module.exports = router;
+  setupRoutes(app) {
+    fs.readdirSync(__dirname + '/').filter(function (file) {
+      const stats = fs.statSync(__dirname + '/' + file);
+      return (file.indexOf('.') !== 0 && stats.isDirectory());
+    }).forEach(function (file) {
+      let tmpRoute = require(__dirname + '/' + file);
+      new tmpRoute(app);
+    });
+  }
+};

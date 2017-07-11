@@ -1,0 +1,12 @@
+{
+  "server": {
+    "port": 8020
+  },
+  "mongo": {
+    "dbHost": [{ "host": "127.0.0.1", "port": 27017 }],
+    "dbName": "gst",
+    "dbUser": "",
+    "dbPassword": "",
+    "debug": true
+  }
+}
