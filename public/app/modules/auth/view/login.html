@@ -1,0 +1,40 @@
+<div class="container dashboardHeader">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>GST Registration</h1>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="jumbotron loginForm">
+      <h2>Sign In</h2>
+      <form name="authForm" class="form" novalidate>
+        <!-- 
+ <label>Username</label><br />
+  <input type="text" name="data1" class="form-control" ng-model="vm.data1" placeholder="Enter Username" required>
+
+  <br />  -->
+        <div class="form-group">
+          <label>Email</label>
+          <br />
+          <input type="email" name="data1" class="form-control" ng-model="vm.data1" placeholder="Enter Email" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Password</label>
+          <br />
+          <input type="Password" name="data2" class="form-control" ng-model="vm.data2" placeholder="Enter Password" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <button class="btn btn-primary" ng-click="vm.doLogin()" ng-disabled="authForm.$invalid">Login</button>
+          <br />
+          <span class="text-danger">{{ vm.error }}</span>
+        </div>
+        <a ng-click="vm.register()">Not yet Registered? Register here</a>
+      </form>
+    </div>
+  </div>
+</div>
