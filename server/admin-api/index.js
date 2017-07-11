@@ -1,27 +1,39 @@
-	var app = require('express');
-	var user = require('./user/index.js');
-	var shareForm = require('./share-form/index.js');
-	var auth = require('./auth/index.js')
+/*
+ Endpoints which don't require authentication
+ */
+let byPassedEndpoints = [
+  '/admin-api',
+  '/user',
+  '/share-form',
+  '/send-sms',
+  '/checkLogin',
+  '/login',
+  '/logout'
 
-	var express_router = app.Router();
-	express_router.get('/admin-api/user', user.getAllUser);
 
-	express_router.get('/admin-api/user/:id', user.getUserbyId);
+];
 
-	express_router.post('/admin-api/user', user.insertNewUser);
-
-	express_router.put('/admin-api/user/:id', user.updateUser);
-
-	express_router.delete('/admin-api/user/:id', user.deleteUser);
-
-	express_router.get('/admin-api/share-form/:email', shareForm.sendMail);
-
-	express_router.get('/admin-api/send-sms/:email', shareForm.sendSMS);
-
-	express_router.get('/checkLogin', auth.IsLoogedIn);
-
-	express_router.post('/login', auth.Login);
-
-	express_router.get('/logout', auth.Logout);
-
-	module.exports = express_router;
+let fs = require('fs');
+module.exports = class AdminApis {
+  constructor(app) {
+    // Configure local auth check
+    app.use('/admin-api', (req, res, next) => {
+      byPassedEndpoints.forEach(function(path) {
+        let regex = new RegExp(path, 'i');
+        if (req.path.match(regex)) {
+          next();
+        }
+      });
+    });
+    this.setupRoutes(app);
+  }
+  setupRoutes(app) {
+    fs.readdirSync(__dirname + '/').filter(function(file) {
+      const stats = fs.statSync(__dirname + '/' + file);
+      return (file.indexOf('.') !== 0 && stats.isDirectory());
+    }).forEach(function(file) {
+      let tmpRoute = require(__dirname + '/' + file);
+      new tmpRoute(app);
+    });
+  }
+};

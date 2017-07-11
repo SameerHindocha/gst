@@ -36,8 +36,6 @@
             <th class="active">PanNo</th>
             <th class="active">TinNo</th>
             <th class="active">GSTNo</th>
-            <th class="active">Update</th>
-            <th class="active">Delete</th>
           </tr>
           <tr ng-repeat="client in vm.clients">
             <td> {{client.companyName}} </td>
@@ -53,12 +51,6 @@
             <td> {{client.panNo }} </td>
             <td> {{client.tinNo }} </td>
             <td> {{client.GSTNo }} </td>
-            <td>
-              <button value="Update" class="btn btn-primary" ng-click="vm.updateProduct(product._id)"> Update </button>
-            </td>
-            <td>
-              <button value="Delete" class="btn btn-danger" ng-click="vm.deleteProduct(product._id);"> Delete </button>
-            </td>
           </tr>
         </table>
       </div>

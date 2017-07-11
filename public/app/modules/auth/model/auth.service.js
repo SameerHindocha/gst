@@ -1,5 +1,5 @@
 'use strict';
-(function () {
+(function() {
   angular
     .module('authApp')
     .factory('AuthService', Service);
@@ -19,9 +19,9 @@
       $http({
         method: 'GET',
         url: '/checkLogin'
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -29,14 +29,15 @@
 
 
     function Login(data) {
+      console.log("SERVICE CALLED");
       var defer = $q.defer();
       $http({
         method: 'post',
         url: '/login',
         data: data
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -47,9 +48,9 @@
       $http({
         method: 'get',
         url: '/logout'
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;

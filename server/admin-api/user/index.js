@@ -1,134 +1,103 @@
-var express = require('express');
-var router = express.Router();
-var SendMail = require("../../helpers/send-mail.js");
-var app = express();
+	module.exports = class UserController {
+	  constructor(app) {
+	    app.get('/admin-api/user', this.getAllUser);
+	    app.get('/admin-api/user/:id', this.getUserbyId);
+	    app.post('/admin-api/user', this.insertNewUser);
+	    app.put('/admin-api/user/:id', this.updateUser);
+	    app.delete('/admin-api/user/:id', this.deleteUser);
+	  }
 
-var user = require('../../models/User.js');
+	  getAllUser(req, res) {
+	    console.log("API CALLED");
+	    db.User.find({}).then((response) => {
+	      res.send(response);
+	    }).catch((error) => {
+	      res.json(error);
+	    })
+	  }
 
+	  insertNewUser(req, res) {
+	    let postbody = req.body,
+	      users = new db.User();
+	    users.companyName = postbody.companyName;
+	    users.address = postbody.address;
+	    users.state = postbody.state;
+	    users.city = postbody.city;
+	    users.pincode = postbody.pincode;
+	    users.email = postbody.email;
+	    users.password = postbody.password;
+	    users.ownerName = postbody.ownerName;
+	    users.mobile1 = postbody.mobile1;
+	    users.mobile2 = postbody.mobile2;
+	    users.landline = postbody.landline;
+	    users.panNo = postbody.panNo;
+	    users.tinNo = postbody.tinNo;
+	    users.GSTNo = postbody.GSTNo;
+	    users.save(function(err) {
+	      if (err) {
+	        res.send(err);
+	      } else {
+	        res.json({ message: 'User created!' });
+	      }
+	    });
+	  };
 
-// middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
-    next();
-});
+	  getUserbyId(req, res) {
+	    db.User.findById({ _id: req.params.id }, function(err, data) {
+	      if (err) {
+	        res.send(err);
+	      } else {
+	        res.json(data);
+	      }
+	    });
+	  };
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'welcome to our api!' });
-});
+	  updateUser(req, res) {
 
+	    let userId = req.params.id;
+	    let updatebody = req.body;
+	    db.User.findById(userId, function(err, data) {
+	      if (err) {
+	        res.send(err);
+	      } else {
+	        data.companyName = updatebody.companyName;
+	        data.address = updatebody.address;
+	        data.state = updatebody.state;
+	        data.city = updatebody.city;
+	        data.pincode = updatebody.pincode;
+	        data.email = updatebody.email;
+	        data.password = updatebody.password;
+	        data.ownerName = updatebody.ownerName;
+	        data.mobile1 = updatebody.mobile1;
+	        data.mobile2 = updatebody.mobile2;
+	        data.landline = updatebody.landline;
+	        data.panNo = updatebody.panNo;
+	        data.tinNo = updatebody.tinNo;
+	        data.GSTNo = updatebody.GSTNo;
+	        data.save(function(err) {
+	          if (err) {
+	            res.send(err);
 
+	          } else {
+	            res.json({ message: 'User updated!' });
+	          }
+	        });
+	      }
+	    });
+	  };
 
-//====POST create a product (accessed at POST http://localhost:8080/products)
-var insertNewUser = function post(req, res) {
-    var User = new user();
-    var oName = req.body.ownerName;
-    User.companyName = req.body.companyName;
-    User.address = req.body.address;
-    User.state = req.body.state;
-    User.city = req.body.city;
-    User.pincode = req.body.pincode;
-    User.email = req.body.email;
-    User.ownerName = req.body.ownerName;
-    User.mobile1 = req.body.mobile1;
-    User.mobile2 = req.body.mobile2;
-    User.landline = req.body.landline;
-    User.panNo = req.body.panNo;
-    User.tinNo = req.body.tinNo;
-    User.GSTNo = req.body.GSTNo;
-    User.password = req.body.password;
+	  deleteUser(req, res) {
+	    db.User.remove({
+	      _id: req.params.id
+	    }, function(err, data) {
 
-    User.save(function(err) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json({ message: 'User created!' });
-        }
-    });
-
-
-};
-
-var getAllUser = function get(req, res) {
-    user.find(function(err, users) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(users);
-        }
-
-    });
-};
-
-var getUserbyId = function get(req, res) {
-
-    user.findById({ _id: req.params.id }, function(err, users) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(users);
-        }
-
-    });
-};
-
-// var User = new user();
-
-var updateUser = function putUser(req, res) {
-    var User = new user();
-    user.findById(req.params.id, function(err, User) {
-        if (err) {
-            res.send(err);
-        } else {
-            User.companyName = req.body.companyName;
-            User.address = req.body.address;
-            User.state = req.body.state;
-            User.city = req.body.city;
-            User.pincode = req.body.pincode;
-            User.email = req.body.email;
-            User.ownerName = req.body.ownerName;
-            User.mobile1 = req.body.mobile1;
-            User.mobile2 = req.body.mobile2;
-            User.landline = req.body.landline;
-            User.panNo = req.body.panNo;
-            User.tinNo = req.body.tinNo;
-            User.GSTNo = req.body.GSTNo;
-            User.save(function(err) {
-                if (err) {
-                    res.send(err);
-                    console.log("update error");
-                } else {
-
-                    res.json({ message: 'User updated!' });
-                }
-
-            });
-
-        }
-
-    });
-};
-
-
-var deleteUser = function deleteuser(req, res) {
-    user.remove({
-        _id: req.params.id
-    }, function(err, users) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json({ message: 'Successfully deleted' });
-        }
-    });
-};
-
-
-module.exports = {
-    insertNewUser: insertNewUser,
-    getAllUser: getAllUser,
-    getUserbyId: getUserbyId,
-    updateUser: updateUser,
-    deleteUser: deleteUser
-
-}
+	      if (data.result.n === 0) {
+	        res.send({ message: 'not Found' });
+	      } else if (err) {
+	        res.send(err);
+	      } else {
+	        res.json({ message: 'Successfully deleted' });
+	      }
+	    });
+	  };
+	}

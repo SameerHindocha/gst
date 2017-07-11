@@ -1,3 +1,5 @@
+<!-- code -->
+<!-- code -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,22 +49,20 @@
       <li><a href="">Separated link</a></li>
     </ul>
   </li>
-  <li>
-    <a data-toggle="dropdown" class="dropdown-toggle">
-      <span>Beacon</span>
-      <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
+     -->
       <li>
-        <a routerLink="/beacon/add" routerLinkActive="active">Add Beacon</a>
+        <a data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          <span>{{vm.currentUser.ownerName}}</span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a routerLink="/beacon/add" routerLinkActive="active">My Profile</a>
+          </li>
+          <li><a ng-click="vm.Logout()">Logout</a></li>
+        </ul>
       </li>
-      <li>
-        <a routerLink="/beacon" routerLinkActive="active">List Beacon</a>
-      </li>
-    </ul>
-  </li>
-</ul>
- -->
+      <!-- </ul> -->
     </div>
     <!-- /.navbar-collapse -->
   </div>

@@ -1,68 +1,58 @@
-	var express = require('express');
-	var router = express.Router();
-	var app = express();
-	var auth = require('../../models/User.js');
-	// middleware to use for all requests
-	router.use(function(req, res, next) {
-	  // do logging
-	  console.log('Something is happening.');
-	  next();
-	});
+let session;
+module.exports = class AuthController {
+  constructor(app) {
+    app.get('/checkLogin', this.IsLoogedIn);
+    app.post('/login', this.Login);
+    app.get('/logout', this.Logout);
+  }
 
+  IsLoogedIn(req, res) {
+    session = req.session;
+    if (session.email) {
+      res.status(200).send({ message: 'You have already logged in' });
+    } else {
+      res.status(401).send({ message: 'User is not Logged in' });
+    }
+  }
 
+  Login(req, res) {
+    console.log("UNDER API----");
 
-	// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-	router.get('/', function(req, res) {
-	  res.json({ message: 'welcome to our api!' });
-	});
-	var session = {};
+    let Email = req.body.Email;
+    console.log("Email", Email);
+    let Password = req.body.Password;
+    console.log("Password", Password);
 
-	var IsLoogedIn = function authenticateUser(req, res) {
-	  session = req.session;
-	  if (session.email) {
-	    res.status(200).send({ message: 'You have already logged in' });
-	  } else {
+    db.User.findOne({ email: Email, password: Password })
+      .then(function(userData) {
+        console.log("DATA FOUND---");
+        if (userData) {
+          session = req.session;
+          session.email = userData.email;
+          session.mobile1 = userData.mobile1;
+          console.log("session", session);
 
-	    res.status(401).send({ message: 'User is not Logged in' });
-	  }
-	}
+          return res.status(200).send({ message: "Login successful", userData: userData })
+        } else {
+          return res.status(404).send({ message: "Incorrect Email or Password" })
+        }
+      }).catch(function(error) {
+        console.log("DATA NOT FOUND---");
 
-	var Login = function login(req, res) {
+        console.error(error);
+        return res.status(500).send({ message: "Internal server error" })
+      });
+  }
 
-	  let Email = req.body.Email;
-	  let Password = req.body.Password;
-	  auth.findOne({ email: Email, password: Password })
-	    .then(function(userData) {
-	      if (userData) {
-	        session = req.session;
-	        session.email = userData.email;
-	        session.mobileNo = userData.mobile1;
-	        session.name = userData.ownerName;
+  Logout(req, res) {
+    req.session.destroy(function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("session", session);
 
-	        console.log("session", session);
-	        return res.status(200).send({ message: "Login successful", data: userData })
-	      } else {
-	        return res.status(404).send({ message: "Incorrect Email or Password" })
-	      }
-	    }).catch(function(error) {
-	      console.error(error);
-	      return res.status(500).send({ message: "Internal server error" })
-	    });
-	}
-
-	var Logout = function logout(req, res) {
-
-	  req.session.destroy(function(err) {
-	    if (err) {
-	      console.log(err);
-	    } else {
-	      return res.status(200).send({ message: "Logged out" })
-	    }
-	  })
-	}
-
-	module.exports = {
-	  IsLoogedIn: IsLoogedIn,
-	  Login: Login,
-	  Logout: Logout
-	}
+        return res.status(200).send({ message: "Logged out" })
+      }
+    })
+  }
+}

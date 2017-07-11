@@ -23,8 +23,6 @@
       <th class="active">panNo</th>
       <th class="active">tinNo</th>
       <th class="active">GSTNo</th>
-      <th class="active">Update</th>
-      <th class="active">Delete</th>
       <tr ng-repeat="user in vm.users">
         <td> {{user._id}} </td>
         <td> {{user.companyName}} </td>
@@ -40,15 +38,8 @@
         <td> {{user.panNo }} </td>
         <td> {{user.tinNo }} </td>
         <td> {{user.GSTNo }} </td>
-        <td>
-          <button value="Update" class="btn btn-primary" ng-click="vm.updateProduct(product._id)"> Update </button>
-        </td>
-        <td>
-          <button value="Delete" class="btn btn-danger" ng-click="vm.deleteProduct(product._id);"> Delete </button>
-        </td>
       </tr>
     </table>
     <br>
-    <!-- <a href="http://localhost:5000/#/products/add" class="btn btn-default">Add another Product</a>
- --></div>
+  </div>
 </div>
