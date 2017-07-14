@@ -224,6 +224,10 @@ select option {
   }
 }
 
+ng-view {
+  display: block;
+}
+
 a {
   cursor: pointer;
 }
@@ -233,11 +237,32 @@ hr {
 }
 
 h1 {
-  font-size: 42px;
+  font-size: 35px;
 }
 
-.dashboardHeader .actionButtons {
-  padding-top: 15px;
+h2,
+.h2 {
+  font-size: 28px;
+}
+
+.actionButtons {
+  padding-bottom: 20px;
+}
+
+.actionButtons button:first-child {
+  margin-right: 5px;
+}
+
+.actionButtons button i {
+  margin-right: 5px;
+}
+
+.actionButtons button:first-child i {
+  font-size: 16px;
+}
+
+.dashboardHeader h2 {
+  color: #444;
 }
 
 .dashboardHeader h2 i {
@@ -259,11 +284,17 @@ h1 {
   margin-top: 5px;
   margin-bottom: 20px;
   text-align: center;
+  color: #444;
+}
+
+.loginForm h2 .glyphicon {
+  font-size: 26px;
 }
 
 .registrationForm h2 {
   margin-top: 5px;
   margin-bottom: 20px;
+  color: #444;
 }
 
 .registrationForm .inputGroupWrap {
@@ -278,9 +309,31 @@ h1 {
 
 .registrationForm .input-group .form-control {
   display: inline-block;
-  padding: 1em 1em 1em 4.4em;
+  padding: 14px 14px 14px 62px;
   border-radius: 4px !important;
   height: auto;
+}
+
+.registrationForm.loginForm .input-group .form-control {
+  padding: 9px 9px 9px 62px;
+}
+
+.registrationForm .input-group .form-control {
+  height: 50px;
+}
+
+.registrationForm .input-group select.form-control {
+  color: #555555;
+}
+
+.registrationForm .input-group select.form-control option {
+  background-color: #fff;
+  color: #555555;
+}
+
+.registrationForm .input-group select.form-control:focus {
+  background-color: #fff;
+  color: #555555;
 }
 
 .registrationForm .input-group-icon .input-icon {
@@ -289,6 +342,15 @@ h1 {
 
 .registrationForm .input-group-icon .input-icon i {
   line-height: 3.4em;
+}
+
+.registrationForm.loginForm .input-group-icon .input-icon i {
+  line-height: 2.75em;
+}
+
+.registrationForm.loginForm .input-group-icon .input-icon {
+  line-height: 2.75em;
+  height: 2.75em;
 }
 
 .registrationForm .alert {
@@ -303,5 +365,109 @@ h1 {
 }
 
 .registrationForm h4 {
-  color: #888888;
+  color: #666666;
+}
+
+.regLink span {
+  margin-right: 10px;
+}
+
+.navbar-inverse {
+  background-color: #337ab7;
+  border: 0 none;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #ddd;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #286090;
+}
+
+.navbar-inverse .navbar-collapse {
+  float: right;
+}
+
+.dropdown-menu {
+  min-width: 120px;
+}
+
+.table-responsive {
+  border: 1px solid #ddd;
+  border-top: 0 none!important;
+}
+
+table.table th {
+  font-size: 14px;
+  color: #666666;
+}
+
+table.table td {
+  font-size: 14px;
+}
+
+.mobileTitle {
+  display: none;
+  font-weight: 500;
+}
+
+.navbar-brand {
+  padding: 5px 15px;
+}
+
+.navbar-brand img {
+  max-height: 100%;
+  max-width: auto;
+}
+
+
+/************************ Responsive ***********************/
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 26px;
+  }
+  .container .loginForm {
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  h2,
+  .h2 {
+    font-size: 18px;
+  }
+  h4,
+  .h4 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .actionButtons {
+    text-align: center;
+  }
+  .mobileTitle {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  .actionButtons button:first-child {
+    margin: 0 0 10px;
+  }
+  .actionButtons button {
+    width: 100%;
+  }
+}
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+  -moz-appearance: textfield !important;
 }

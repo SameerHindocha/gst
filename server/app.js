@@ -2,20 +2,15 @@ let express = require('express');
 let session = require('express-session');
 let bodyParser = require('body-parser');
 let morgan = require('morgan');
-
-
-
 let app = express();
 global.ROOT_PATH = __dirname;
 const config = require('./config/development.js');
 global.config = config;
-
+global.preLink = `http://${global.config.server.url}:${global.config.server.port}/#/client/add`;
 const path = require('path');
 const fs = require('fs');
 
-
-
-var sessionOptions = {
+let sessionOptions = {
   name: 'session',
   secret: 'ScRcHp',
   resave: true,
@@ -29,30 +24,15 @@ var sessionOptions = {
 };
 
 app.use(session(sessionOptions));
-
 app.use("/", express.static(path.join(ROOT_PATH, '..', 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-
-
-
-
-
-
-
 require('./config/mongo');
-// require('./config/express')(app);
-
-
 
 let adminAPI = require('./admin-api');
 new adminAPI(app);
-
 let publicAPI = require('./public-api');
 new publicAPI(app);
-
-
 
 module.exports = app;

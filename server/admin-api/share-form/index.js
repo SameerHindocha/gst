@@ -1,57 +1,42 @@
-var SendMail = require("../../helpers/send-mail.js");
-
+let SendMail = require("../../helpers/send-mail.js");
+let SendSMS = require("../../helpers/send-sms.js");
 let request = require('request');
 
 module.exports = class ShareFormController {
   constructor(app) {
     app.get('/admin-api/share-form/:email', this.sendMail);
     app.get('/admin-api/send-sms/:email', this.sendSMS);
+    // app.get('/admin-api/share-link/:email', this.shareLink);
 
   }
 
-
-
   sendMail(req, res) {
-    let email = req.params.email;
-    db.User.findOne({ email: email }, function(err, user) {
-      if (err) {
-        res.send(err);
-      } else {
-        let emailObj = {
-          subject: `Welcome to GST registration ${user.ownerName} ${user._id}`, // Subject line
-          html: `<h4>Hello, ${user.ownerName}</h4> 
+    let emailObj = {
+      subject: `Welcome to GST registration ${req.session.userProfile.ownerName}`, // Subject line
+      html: `<h4>Hello, ${req.session.userProfile.ownerName}</h4>
                     <h4>Welcome,</h4><br>
-                    <a href='http://${global.config.server.url}:${global.config.server.port}/#/client/add/${user._id}' class='alert-link'>Click here to fill the GST registration form</a></br></br>
-<h4>Warm Regards,<h4>
+                    <a href='${global.preLink}/${req.session.userProfile._id}' class='alert-link'>Click here to fill the GST registration form</a></br></br>
+                    <h4>Warm Regards,<h4>
                     <h4>GST team</h4>`,
-        };
-        SendMail.MailFunction(emailObj, email);
-      }
+    };
+    SendMail.MailFunction(emailObj, req.session.userProfile.email).then(function(data) {
+      res.send({ message: "Email has been sent successfully to your registered mail" })
+    }, function(err) {
+      res.send(err)
     });
+  };
+  sendSMS(req, res) {
+    let msg = 'We' + req.session.userProfile.companyName + 'request you to fill your Company DETAILS with GSTIN ,WHICH WILL BE NEEDED ( WITHOUT SPELLING ERROR) . WE HUMBALLY REQUEST TO FILL UP THIS FORM AND SUBMIT IT AS EARLY AS POSSIBLE TO UPDATE YOUR DETAILS WITH OUR Company.' +
+      'PLEASE CLICK ON THE FOLLOWING LINK TO UPDATE YOUR DETAILS :   http://localhost:8020/#/client/add'
+      //http://' + global.config.server.url + ':' +
+      // global.config.server.port + '/#/client/add/' + req.session.userProfile._id
+    let data = {
+      mobile: req.session.userProfile.mobile1,
+      message: msg
+    }
+    console.log("msg", msg);
+    SendSMS.SMSFunction(data);
   };
 
-  sendSMS(req, res) {
-    let email = req.params.email;
-    // let user = new db.User();
-    const userId = "2000144979";
-    const password = "etXCalqSL";
-    db.User.findOne({ email: email }, function(err, user) {
-      if (err) {
-        res.send(err);
-      } else {
-        let mobile = user.mobile1;
-        let msg = "Hello " + user.ownerName + ", Welcome to GST Registration111";
-        request('http://enterprise.smsgupshup.com/GatewayAPI/rest?method=SendMessage&send_to=' + mobile + '&msg=' + msg + '&msg_type=TEXT&userid=' + userId + '&auth_scheme=plain&password=' + password + '&v=1.1&format=text', function(error, response, body) {
-          if (error) {
-            console.log('ERROR body:', body);
-            res.send(error);
-          } else {
-            console.log('SUCCESS body:', body);
-            res.send(response);
-          }
-        });
-      }
-    });
-  };
 
 }

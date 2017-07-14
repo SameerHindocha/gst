@@ -14,7 +14,7 @@
     };
 
     function shareLinkService(data) {
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'get',
         url: '/admin-api/share-form/' + data.email
@@ -27,7 +27,7 @@
     }
 
     function sendSMSService(data) {
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'get',
         url: '/admin-api/send-sms/' + data.email
@@ -40,7 +40,7 @@
     }
 
     function getClients(data) {
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'get',
         url: '/api/client-by-user/' + data.email

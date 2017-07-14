@@ -1,12 +1,10 @@
-// var CONFIG = require('../config/mail-server-property.json');
 module.exports = {
   MailFunction(emailObject, Email) {
     let q = require("q");
-    let smtpTransport = require('nodemailer-smtp-transport');
     let nodemailer = require('nodemailer');
-    let sendMail = (mailOptions) => {
+    let sendMail = (mailOptions, email) => {
       mailOptions.from = mailOptions.from || global.config.mailServer.fromAddress;
-      mailOptions.to = Email;
+      mailOptions.to = email;
       let deferred = q.defer();
       let smtpConfiguration = {
         host: global.config.mailServer.host,
@@ -18,7 +16,7 @@ module.exports = {
           pass: global.config.mailServer.password
         }
       };
-      let gstEmailTransporter = nodemailer.createTransport(smtpTransport(smtpConfiguration));
+      let gstEmailTransporter = nodemailer.createTransport(smtpConfiguration);
       gstEmailTransporter.sendMail(mailOptions, function(mailError, mailResponseStatus) {
         if (mailError) {
           deferred.reject(mailError);
@@ -29,8 +27,6 @@ module.exports = {
       return deferred.promise;
     };
     let emailOb = emailObject;
-    sendMail(emailOb).then(function(mailDetail) {}).catch(function(sendEmailError) {
-      console.log("error", sendEmailError);
-    });
+    return sendMail(emailOb, Email);
   }
 }

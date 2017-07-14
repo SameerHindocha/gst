@@ -25,21 +25,16 @@
       })
     }
 
-
     function doLogin() {
       let postObj = {
         Email: vm.data1,
         Password: vm.data2
       };
       AuthService.Login(postObj).then((response) => {
-        console.log("response", response);
         window.localStorage.setItem('currentUser', JSON.stringify(response.data.userData));
         toastr.success(response.data.message);
         $location.path('/dashboard');
       }).catch((Error) => {
-        console.log('HYF/dsuigdhyf');
-
-        console.log(Error);
         vm.error = Error.data.message;
       });
     }

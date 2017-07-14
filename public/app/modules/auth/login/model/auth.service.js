@@ -27,9 +27,7 @@
       return defer.promise;
     }
 
-
     function Login(data) {
-      console.log("SERVICE CALLED");
       var defer = $q.defer();
       $http({
         method: 'post',

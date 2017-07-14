@@ -1,43 +1,66 @@
 'use strict';
 (function() {
-    angular
-        .module('userApp')
-        .controller('addUserController', controller);
+  angular
+    .module('userApp')
+    .controller('addUserController', controller);
 
-    controller.$inject = ['UserService', 'toastr', '$location'];
+  controller.$inject = ['UserService', 'toastr', '$location', 'lodash'];
 
-    function controller(UserService, toastr, $location) {
+  function controller(UserService, toastr, $location, lodash) {
+    let vm = this;
+    vm.UserService = UserService;
+    vm.addUser = addUser;
+    vm.getGSTStatus = getGSTStatus;
+    vm.states = ["Andaman and Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "West Bengal", "Chhattisgarh", "Uttarakhand", "Jharkhand", "Telangana"]
 
-        let vm = this;
-        vm.UserService = UserService;
-        vm.addUser = addUser;
-        activate();
+    activate();
 
-        function activate() {}
+    function activate() {}
 
-        function addUser() {
-            let postObj = {
-                companyName: vm.companyName,
-                state: vm.state,
-                city: vm.city,
-                pincode: vm.pincode,
-                email: vm.email,
-                ownerName: vm.ownerName,
-                address: vm.address,
-                mobile1: vm.mobile1,
-                mobile2: vm.mobile2,
-                landline: vm.landline,
-                panNo: vm.panNo,
-                tinNo: vm.tinNo,
-                GSTNo: vm.GSTNo,
-                password: vm.password
-            };
-            UserService.addUser(postObj).then((response) => {
-                toastr.success('User added Successfully');
-                $location.path('/login');
-            }).catch((error) => {
-                toastr.error(error);
-            });
-        }
+    function addUser() {
+      let postObj = {
+        companyName: vm.companyName,
+        state: vm.state,
+        city: vm.city,
+        pincode: vm.pincode,
+        email: vm.email,
+        ownerName: vm.ownerName,
+        address: vm.address,
+        mobile1: vm.mobile1,
+        mobile2: vm.mobile2,
+        landline: vm.landline,
+        panNo: vm.panNo,
+        GSTNo: vm.GSTNo,
+        password: vm.password
+      };
+
+      if (vm.password != vm.confirmPassword) {
+        toastr.error('Confirm password must match the entered password');
+      } else {
+        UserService.addUser(postObj).then((response) => {
+          toastr.success(response.data.message);
+          $location.path('/login');
+        }).catch((error) => {
+          if (error.status == 409) {
+            toastr.error(error.data.message);
+          }
+        });
+      }
+
     }
+
+    function getGSTStatus() {
+      if (lodash.size(vm.GSTNo) == 15) {
+        let gstObj = {
+          gstNo: vm.GSTNo
+        };
+        UserService.gstStatus(gstObj).then((response) => {
+          vm.gstConflict = false;
+        }).catch((error) => {
+          vm.gstConflict = true;
+          toastr.error(error.data.message);
+        })
+      }
+    }
+  }
 })();

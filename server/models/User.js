@@ -5,59 +5,53 @@ module.exports = (mongoose) => {
   let UserSchema = new Schema({
     companyName: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Company Name is required.']
     },
     address: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Address is required.']
     },
     state: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'State is required.']
     },
     city: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'City is required.']
     },
     pincode: {
       type: Number,
-      required: [false, ' is required.']
+      required: [true, 'Pincode is required.']
     },
     email: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Email is required.']
     },
     ownerName: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Owner Name is required.']
     },
     mobile1: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Mobile Number is required.']
     },
     mobile2: {
-      type: String,
-      required: [false, ' is required.']
+      type: String
     },
     landline: {
-      type: String,
-      required: [false, ' is required.']
+      type: String
     },
     panNo: {
       type: String,
-      required: [false, ' is required.']
-    },
-    tinNo: {
-      type: String,
-      required: [false, ' is required.']
+      required: [true, 'Pan Number is required.']
     },
     GSTNo: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'GSTNo is required.']
     },
     password: {
       type: String,
-      required: [false, ' is required.']
+      required: [true, 'Password is required.']
     }
   }, { timestamps: true }, { strict: true });
   return mongoose.model('User', UserSchema);

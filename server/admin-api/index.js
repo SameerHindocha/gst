@@ -8,9 +8,8 @@ let byPassedEndpoints = [
   '/send-sms',
   '/checkLogin',
   '/login',
-  '/logout'
-
-
+  '/logout',
+  '/gst-status'
 ];
 
 let fs = require('fs');

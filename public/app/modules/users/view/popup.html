@@ -1,0 +1,37 @@
+<a class="btn btn-primary btn-sm" ng-click="openAddPopup()">Edit Profile</a>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Profile</h4>
+      </div>
+      <div class="modal-body">
+        <label>Owner Name</label>
+        <input type="text" name="ownerName" class="form-control" ng-model="details.ownerName" placeholder="owner Name" required>
+        <label>States</label>
+        <select name="state" class="form-control" ng-model="details.state">
+          <option value="">Please select State</option>
+          <option ng-repeat="state in states">{{state}}</option>
+        </select>
+        <br />
+        <label>City</label>
+        <input type="text" name="city" class="form-control" ng-model="details.city" placeholder="City Name" required>
+        <label>Pin Code</label>
+        <input type="text" pattern="[0-9]{6}" name="pincode" class="form-control" ng-model="details.pincode" placeholder="Pincode" required>
+        <label>Address</label>
+        <input type="text" name="address" class="form-control" ng-model="details.address" placeholder="Address" required>
+        <label>Mobile1</label>
+        <input type="text" name="mobile1" class="form-control" ng-model="details.mobile1" placeholder="Mobile Number" maxlength="10" minlength="10" required>
+        <label>Mobile2</label>
+        <input type="text" name="mobile2" class="form-control" ng-model="details.mobile2" placeholder="Alternate Mobile Number" maxlength="10" minlength="10">
+        <label>Landline No</label>
+        <input type="text" name="landline" class="form-control" ng-model="details.landline" placeholder="Landline Number">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="send()" data-dismiss="modal">send</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

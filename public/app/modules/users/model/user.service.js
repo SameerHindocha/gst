@@ -1,5 +1,5 @@
 'use strict';
-(function () {
+(function() {
   angular
     .module('userApp')
     .factory('UserService', Service);
@@ -11,19 +11,21 @@
       addUser: addUser,
       listUser: listUser,
       deleteUser: deleteUser,
-      editUser: editUser,
-      getUserById: getUserById
+      // editUser: editUser,
+      getUserById: getUserById,
+      updateUser: updateUser,
+      gstStatus: gstStatus
     };
 
     function addUser(data) {
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'post',
         url: '/admin-api/user',
         data: data
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;
@@ -34,9 +36,9 @@
       $http({
         method: 'get',
         url: '/admin-api/user'
-      }).then(function (response) {
+      }).then(function(response) {
         defered.resolve(response.data);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defered.reject(error);
       });
       return defered.promise;
@@ -46,43 +48,70 @@
       console.log(userId);
 
       console.log(userId);
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'delete',
         url: '/admin-api/user/' + userId._id
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response);
-      }).catch(function (error) {
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;
     }
 
-    function editUser(data, userId) {
+    // function editUser(data, userId) {
 
-      var defer = $q.defer();
-      $http({
-        method: 'put',
-        url: '/admin-api/user/' + userId,
-        data: data
-      }).then(function (response) {
-        defer.resolve(response);
-      }).catch(function (error) {
-        defer.reject(error);
-      });
-      return defer.promise;
-    }
+    //   let defer = $q.defer();
+    //   $http({
+    //     method: 'put',
+    //     url: '/admin-api/user/' + userId,
+    //     data: data
+    //   }).then(function(response) {
+    //     defer.resolve(response);
+    //   }).catch(function(error) {
+    //     defer.reject(error);
+    //   });
+    //   return defer.promise;
+    // }
 
     function getUserById(userId) {
 
 
-      var defer = $q.defer();
+      let defer = $q.defer();
       $http({
         method: 'get',
         url: '/admin-api/user/' + userId
-      }).then(function (response) {
+      }).then(function(response) {
         defer.resolve(response.data);
-      }).catch(function (error) {
+      }).catch(function(error) {
+        defer.reject(error);
+      });
+      return defer.promise;
+    }
+
+    function updateUser(data) {
+      let defer = $q.defer();
+      $http({
+        method: 'put',
+        url: '/editUser',
+        data: data,
+      }).then(function(response) {
+        defer.resolve(response);
+      }).catch(function(error) {
+        defer.reject(error);
+      });
+      return defer.promise;
+    }
+
+    function gstStatus(data) {
+      let defer = $q.defer();
+      $http({
+        method: 'get',
+        url: '/admin-api/gst-status/' + data.gstNo
+      }).then(function(response) {
+        defer.resolve(response);
+      }).catch(function(error) {
         defer.reject(error);
       });
       return defer.promise;
