@@ -4,13 +4,15 @@
     .module('clientApp')
     .controller('addClientController', controller);
 
-  controller.$inject = ['ClientService', 'toastr', '$location', '$route'];
+  controller.$inject = ['ClientService', 'toastr', '$location', '$route', 'lodash'];
 
-  function controller(ClientService, toastr, $location, $route) {
+  function controller(ClientService, toastr, $location, $route, lodash) {
     let vm = this;
     vm.ClientService = ClientService;
     vm.addClient = addClient;
-    vm.states = ["Andaman and Nicobar ", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "West Bengal", "Chhattisgarh", "Uttarakhand", "Jharkhand", "Telangana"]
+    vm.getGSTStatus = getGSTStatus;
+
+    vm.states = ["Andaman and Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "West Bengal", "Chhattisgarh", "Uttarakhand", "Jharkhand", "Telangana"]
     activate();
 
     function activate() {}
@@ -52,5 +54,24 @@
         });
       }
     }
+
+    function getGSTStatus() {
+      if (lodash.size(vm.GSTNo) == 15) {
+        let userKey = $route.current.params.id + vm.GSTNo;
+        let gstObj = {
+          userKey: userKey
+        };
+        console.log("gstObj==>>");
+        console.log(gstObj);
+        ClientService.gstStatus(gstObj).then((response) => {
+          console.log("response", response);
+          vm.gstConflict = false;
+        }).catch((error) => {
+          vm.gstConflict = true;
+          toastr.error(error.data.message);
+        })
+      }
+    }
+
   }
 })();

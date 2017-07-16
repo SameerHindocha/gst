@@ -3,7 +3,7 @@ module.exports = class ClientController {
   constructor(app) {
     app.get('/api/client', this.getAllClient);
     app.get('/api/client-by-user/:email', this.getClientsByUser);
-    // app.get('/api/gst-status/:gstNo', this.getGSTStatus);
+    app.get('/api/gst-status/:userKey', this.getGSTStatus);
     app.post('/api/client', this.insertNewClient);
   }
 
@@ -40,6 +40,8 @@ module.exports = class ClientController {
     Client.panNo = req.body.panNo;
     Client.GSTNo = req.body.GSTNo;
     Client.userId = req.body.userId;
+    Client.userKey = req.body.userId + req.body.GSTNo;
+
     if (req.body.password) {
       Client.password = Utils.md5(req.body.password)
     }
@@ -70,6 +72,8 @@ module.exports = class ClientController {
                 userAsClient.panNo = linkSentBy.panNo;
                 userAsClient.GSTNo = linkSentBy.GSTNo;
                 userAsClient.userId = repeatedUser._id;
+                userAsClient.userKey = repeatedUser._id + linkSentBy.GSTNo;
+
                 if (linkSentBy.password) {
                   userAsClient.password = Utils.md5(linkSentBy.password)
                 }
@@ -109,6 +113,8 @@ module.exports = class ClientController {
                   userAsClient.panNo = linkSentBy.panNo;
                   userAsClient.GSTNo = linkSentBy.GSTNo;
                   userAsClient.userId = finalId;
+                  userAsClient.userKey = finalId + linkSentBy.GSTNo;
+
                   if (linkSentBy.password) {
                     userAsClient.password = Utils.md5(linkSentBy.password)
                   }
@@ -164,4 +170,23 @@ module.exports = class ClientController {
       res.json(error);
     })
   }
+
+  getGSTStatus(req, res) {
+    console.log("req.params==>>");
+    console.log(req.params);
+
+    db.Client.findOne({ userKey: req.params.userKey }, function(err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        if (data) {
+          return res.status(409).send({ message: "GST is already registered" });
+        } else {
+          return res.send({ message: 'No match found' });
+        }
+      }
+    });
+  };
+
+
 }

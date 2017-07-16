@@ -9,6 +9,7 @@
   function Service($http, $q) {
     return {
       addClient: addClient,
+      gstStatus: gstStatus
     };
 
     function addClient(data) {
@@ -24,5 +25,19 @@
       });
       return defer.promise;
     }
+
+    function gstStatus(data) {
+      let defer = $q.defer();
+      $http({
+        method: 'get',
+        url: '/api/gst-status/' + data.userKey
+      }).then(function(response) {
+        defer.resolve(response);
+      }).catch(function(error) {
+        defer.reject(error);
+      });
+      return defer.promise;
+    }
+
   }
 })();

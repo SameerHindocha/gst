@@ -1,132 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-  <title>Client Registration</title>
-</head>
-
-<body>
-  <div class="container dashboardHeader">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1>GST Registration</h1>
-      </div>
-      <div class="col-md-6">
-        <h2>
-                <i class="glyphicon glyphicon-plus-sign"></i>
-                Client Registration
-            </h2>
-      </div>
-      <div class="col-md-6 text-right actionButtons">
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7 registrationForm">
-        <form name="addClientForm">
-          <lable>Company Name</lable>
-          <input type="text" name="companyName" class="form-control" ng-model="vm.companyName" placeholder="Enter Company Name" required>
-          <div ng-hide="addClientForm.companyName.$valid || addClientForm.companyName.$pristine" class="alert alert-danger">
-            Company Name is Require
-          </div>
-          <br />
-          <lable>State</lable>
-          <br />
-          <select name="state" class="form-control" ng-model="vm.state">
-            <option ng-repeat="state in vm.states">{{state}}</option>
-          </select>
-          <div ng-hide="addClientForm.state.$valid || addClientForm.state.$pristine" class="alert alert-danger">
-            State Name is Require
-          </div>
-          <br />
-          <lable>City</lable>
-          <br />
-          <input type="text" name="city" class="form-control" ng-model="vm.city" placeholder="Enter City Name" required>
-          <div ng-hide="addClientForm.city.$valid || addClientForm.city.$pristine" class="alert alert-danger">
-            City Name is Require
-          </div>
-          <br />
-          <lable>Pincode</lable>
-          <br />
-          <input type="number" name="pincode" class="form-control" ng-model="vm.pincode" placeholder="Enter Pincode" required>
-          <div ng-hide="addClientForm.pincode.$valid || addClientForm.pincode.$pristine" class="alert alert-danger">
-            Pincode is Require
-          </div>
-          <br />
-          <lable>Owner Nane</lable>
-          <br />
-          <input type="text" name="ownerName" class="form-control" ng-model="vm.ownerName" placeholder=" Owner Name" required>
-          <div ng-hide="addClientForm.ownerName.$valid || addClientForm.ownerName.$pristine" class="alert alert-danger">
-            Owner Name is Require
-          </div>
-          <br />
-          <lable>Email Address</lable>
-          <br />
-          <input type="email" name="email" class="form-control" ng-model="vm.email" placeholder="Enter Email Address" required>
-          <div ng-hide="addClientForm.email.$valid || addClientForm.email.$pristine" class="alert alert-danger">
-            Email Address is Require
-          </div>
-          <br />
-          <lable>Address</lable>
-          <br />
-          <input type="text" name="address" class="form-control" ng-model="vm.address" placeholder="Enter Address" required>
-          <div ng-hide="addClientForm.address.$valid || addClientForm.address.$pristine" class="alert alert-danger">
-            Address is Require
-          </div>
-          <br />
-          <lable>Mobile Number 1</lable>
-          <br />
-          <input type="number" name="mobile1" class="form-control" ng-model="vm.mobile1" placeholder="Enter Mobile Number" required>
-          <div ng-hide="addClientForm.mobile1.$valid || addClientForm.mobile1.$pristine" class="alert alert-danger">
-            Company Name is Require
-          </div>
-          <br />
-          <lable>Mobile Number 2</lable>
-          <br />
-          <input type="number" name="mobile2" class="form-control" ng-model="vm.mobile2" placeholder="Enter Alternative Mobile Number">
-          <br />
-          <lable>Landline Number</lable>
-          <br />
-          <input type="number" name="landline" class="form-control" ng-model="vm.landline" placeholder="Enter Landline Number">
-          <br />
-          <lable>Pan No</lable>
-          <br />
-          <input type="text" name="panNo" class="form-control" ng-model="vm.panNo" placeholder="Enter Pan Number" required>
-          <div ng-hide="addClientForm.panNo.$valid || addClientForm.panNo.$pristine" class="alert alert-danger">
-            Pan Number is Require
-          </div>
-          <br />
-          <lable>Tin Number</lable>
-          <br />
-          <input type="text" name="tinNo" class="form-control" ng-model="vm.tinNo" placeholder="Enter Tin Number" required>
-          <div ng-hide="addClientForm.tinNo.$valid || addClientForm.tinNo.$pristine" class="alert alert-danger">
-            Tin Number is Require
-          </div>
-          <br />
-          <lable>GST Number</lable>
-          <br />
-          <input type="text" name="GSTNo" class="form-control" ng-model="vm.GSTNo" placeholder="Enter GST Number" required>
-          <div ng-hide="addClientForm.GSTNo.$valid || addClientForm.GSTNo.$pristine" class="alert alert-danger">
-            GST Number is Require
-          </div>
-          <br />
-          <lable>Password</lable>
-          <br />
-          <input type="password" name="password" class="form-control" ng-model="vm.password" placeholder="Password" pattern="(?=.*\d).{8,}" required>
-          <span class="fa fa-warning" style="color:red;" ng-show="!addClientForm.password.$error.required && addClientForm.password.$error.pattern && addClientForm.password.$dirty"> The password provided does not meet minimum requirements. Please make sure that your password is at least 8 characters long.</span>
-          <br>
-          <br>
-          <button class="btn btn-success" ng-disabled="addClientForm.companyName.$invalid || addClientForm.state.$invalid || addClientForm.city.$invalid || addClientForm.pincode.$invalid || addClientForm.ownerName.$invalid || addClientForm.address.$invalid || addClientForm.mobile1.$invalid || addClientForm.panNo.$invalid || addClientForm.tinNo.$invalid || addClientForm.GSTNo.$invalid || addClientForm.email.$invalid" ng-click="vm.addClient()">Save</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
-
-</html>
- -->
 <!DOCTYPE html>
 <html>
 
@@ -263,7 +134,7 @@
             <!-- *******GST NO******** -->
             <div class="inputGroupWrap col-md-6">
               <div class="input-group input-group-icon">
-                <input type="text" name="GSTNo" class="form-control" ng-model="vm.GSTNo" placeholder="GST Number" required>
+                <input type="text" name="GSTNo" class="form-control" ng-model="vm.GSTNo" placeholder="GST Number" minlength="15" maxlength="15" ng-change="vm.getGSTStatus()" required>
                 <div class="input-icon"><i class="fa fa-id-card-o"></i></div>
               </div>
               <div ng-hide="addClientForm.GSTNo.$valid || addClientForm.GSTNo.$pristine" class="alert alert-danger">
@@ -309,7 +180,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" ng-disabled=" addClientForm.companyName.$invalid || addClientForm.state.$invalid || addClientForm.city.$invalid || addClientForm.pincode.$invalid || addClientForm.ownerName.$invalid || addClientForm.address.$invalid || addClientForm.mobile1.$invalid || addClientForm.panNo.$invalid || addClientForm.tinNo.$invalid || addClientForm.GSTNo.$invalid || addClientForm.email.$invalid " ng-click="vm.addClient()">Save</button>
+          <button class="btn btn-primary" ng-disabled=" 
+          vm.gstConflict || 
+          addClientForm.companyName.$invalid || addClientForm.state.$invalid || addClientForm.city.$invalid || addClientForm.pincode.$invalid || addClientForm.ownerName.$invalid || addClientForm.address.$invalid || addClientForm.mobile1.$invalid || addClientForm.panNo.$invalid || addClientForm.tinNo.$invalid || addClientForm.GSTNo.$invalid || addClientForm.email.$invalid " ng-click="vm.addClient()">Save</button>
         </form>
       </div>
     </div>

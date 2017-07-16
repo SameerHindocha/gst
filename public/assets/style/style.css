@@ -265,8 +265,14 @@ h2,
   color: #444;
 }
 
-.dashboardHeader h2 i {
-  font-size: 26px;
+.dashboardHeader h2.welcomeMessage {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.detailTable input[type="search"] {
+  margin-bottom: 20px;
+  max-width: 500px;
 }
 
 .navbar {
@@ -373,7 +379,7 @@ h2,
 }
 
 .navbar-inverse {
-  background-color: #337ab7;
+  background-color: #d5d5d5;
   border: 0 none;
 }
 
@@ -382,7 +388,11 @@ h2,
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #ddd;
+  color: #333333;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #000000
 }
 
 .navbar-inverse .navbar-nav > .open > a,

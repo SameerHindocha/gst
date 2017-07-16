@@ -6,32 +6,60 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Edit Profile</h4>
       </div>
-      <div class="modal-body">
-        <label>Owner Name</label>
-        <input type="text" name="ownerName" class="form-control" ng-model="details.ownerName" placeholder="owner Name" required>
-        <label>States</label>
-        <select name="state" class="form-control" ng-model="details.state">
-          <option value="">Please select State</option>
-          <option ng-repeat="state in states">{{state}}</option>
-        </select>
-        <br />
-        <label>City</label>
-        <input type="text" name="city" class="form-control" ng-model="details.city" placeholder="City Name" required>
-        <label>Pin Code</label>
-        <input type="text" pattern="[0-9]{6}" name="pincode" class="form-control" ng-model="details.pincode" placeholder="Pincode" required>
-        <label>Address</label>
-        <input type="text" name="address" class="form-control" ng-model="details.address" placeholder="Address" required>
-        <label>Mobile1</label>
-        <input type="text" name="mobile1" class="form-control" ng-model="details.mobile1" placeholder="Mobile Number" maxlength="10" minlength="10" required>
-        <label>Mobile2</label>
-        <input type="text" name="mobile2" class="form-control" ng-model="details.mobile2" placeholder="Alternate Mobile Number" maxlength="10" minlength="10">
-        <label>Landline No</label>
-        <input type="text" name="landline" class="form-control" ng-model="details.landline" placeholder="Landline Number">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" ng-click="send()" data-dismiss="modal">send</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+      <form name="updateUserForm">
+        <div class="modal-body">
+          <label>
+            <h4>Owner Name</h4></label>
+          <input type="text" name="ownerName" class="form-control" ng-model="details.ownerName" placeholder="owner Name" required>
+          <div ng-hide="updateUserForm.ownerName.$valid || updateUserForm.ownerName.$pristine" class="alert alert-danger">
+            Owner Name is Require
+          </div>
+          <label>
+            <h4>States</h4></label>
+          <select name="state" class="form-control" ng-model="details.state">
+            <option value="">Please select State</option>
+            <option ng-repeat="state in states">{{state}}</option>
+          </select>
+          <br />
+          <label>
+            <h4>City</h4></label>
+          <input type="text" name="city" class="form-control" ng-model="details.city" placeholder="City Name" required>
+          <div ng-hide="updateUserForm.city.$valid || updateUserForm.city.$pristine" class="alert alert-danger">
+            City Name is Require
+          </div>
+          <label>
+            <h4>Pin Code</h4></label>
+          <input type="number" name="pincode" class="form-control no-spin" ng-model="details.pincode" placeholder="Pincode" maxlength="6" minlength="6" required>
+          <div ng-hide="updateUserForm.pincode.$valid || updateUserForm.pincode.$pristine" class="alert alert-danger">
+            Invalid Pincode
+          </div>
+          <label>
+            <h4>Address</h4></label>
+          <input type="text" name="address" class="form-control" ng-model="details.address" placeholder="Address" required>
+          <div ng-hide="updateUserForm.address.$valid || updateUserForm.address.$pristine" class="alert alert-danger">
+            Address is Require
+          </div>
+          <label>
+            <h4>Mobile1</h4></label>
+          <input type="text" name="mobile1" class="form-control" ng-model="details.mobile1" placeholder="Mobile Number" pattern="^[7-9][0-9]{9}$" required>
+          <div ng-hide="updateUserForm.mobile1.$valid || updateUserForm.mobile1.$pristine" class="alert alert-danger">
+            Invalid Mobile Number
+          </div>
+          <label>
+            <h4>Mobile2</h4></label>
+          <input type="text" name="mobile2" pattern="^[7-9][0-9]{9}$" class="form-control" ng-model="details.mobile2" placeholder="Alternate Mobile Number">
+          <label>
+            <div ng-hide="updateUserForm.mobile2.$valid || updateUserForm.mobile2.$pristine" class="alert alert-danger">
+              Invalid Mobile Number
+            </div>
+            <h4>Landline No</h4></label>
+          <input type="text" name="landline" class="form-control" ng-model="details.landline" placeholder="Landline Number">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" ng-click="send()" data-dismiss="modal" ng-disabled="updateUserForm.ownerName.$invalid || updateUserForm.city.$invalid || updateUserForm.pincode.$invalid || updateUserForm.address.$invalid || updateUserForm.mobile1.$invalid || updateUserForm.mobile2.$invalid ">send</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

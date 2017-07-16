@@ -1,20 +1,44 @@
 <header></header>
-<h2>Welcome, {{vm.companyName}}</h2>
-<div class="container dashboardHeader">
+<div class="container-fluid dashboardHeader">
   <div class="row">
-    <div class="col-md-12  text-center">
-      <h1>Client Details</h1>
+    <div class="col-md-12">
+      <h2 class="welcomeMessage">Welcome, {{vm.companyName}}</h2>
+      <h1 class="text-center">Client Details</h1>
     </div>
   </div>
 </div>
-<input type="search" class="form-control" ng-model="vm.searchText" placeholder="Search" type="search" ng-change="vm.search()" />
 <hr>
 <div class="container-fluid detailTable">
   <div class="row">
-    <div class="col-sm-12 text-right actionButtons">
+    <div class="col-sm-6">
+      <input type="search" class="form-control" ng-model="vm.searchText" placeholder="Search" type="search" ng-change="vm.search()" />
+    </div>
+    <div class="col-sm-6 actionButtons">
       <label>{{vm.link}}</label>
-      <button class="btn btn-primary" ng-click="vm.sendSMS()"><i class="fa fa-mobile" aria-hidden="true"></i> Share Via SMS</button>
-      <button class="btn btn-primary" ng-click="vm.sendLink()"><i class="fa fa-envelope-o" aria-hidden="true"></i> Share Via Email</button>
+      <ul class="nav navbar-nav">
+        <li>
+          <a data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <!-- <a class="shareLinks" href="javascript:void(0)"> -->
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+            <!-- </a> -->
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a ng-click="vm.sendLink()">
+                <i class="fa fa-envelope-o"></i> Email
+              </a>
+            </li>
+            <li>
+              <a ng-click="vm.sendSMS()">
+                <i class="fa fa-mobile"></i> SMS
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <button class="btn btn-primary" ng-click="vm.sendSMS()"><i class="fa fa-mobile" aria-hidden="true"></i> Share Via SMS</button>
+      <button class="btn btn-primary" ng-click="vm.sendLink()"><i class="fa fa-envelope-o" aria-hidden="true"></i> Share Via Email</button> -->
     </div>
     <div class="col-md-12">
       <div class="table-responsive">
